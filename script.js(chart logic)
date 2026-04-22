@@ -1,0 +1,21 @@
+fetch('fetch.php')
+.then(response => response.json())
+.then(data => {
+
+    const labels = data.map(item => item.name);
+    const values = data.map(item => item.value);
+
+    const ctx = document.getElementById('myChart').getContext('2d');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Data Values',
+                data: values
+            }]
+        }
+    });
+
+});
